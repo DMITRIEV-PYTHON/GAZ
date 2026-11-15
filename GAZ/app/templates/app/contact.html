@@ -1,0 +1,22 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+<address>
+    ГАЗ ДЕТАЛИ МАШИН<br />
+    г. Иваново, ул.Некрасова, д.122<br />
+    <abbr title="Телефон">Телефон:</abbr>
+    +7 (4932) 22-00-44<br />
+    <abbr title="МАХ">МАХ:</abbr>
+    +7 908 562 00 44
+</address>
+
+<address>
+    <strong>Техническая поддержка:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+    <strong>Отдел маркетинга:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+</address>
+
+{% endblock %}

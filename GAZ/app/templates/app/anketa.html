@@ -1,0 +1,77 @@
+{% extends "app/layout.html" %}
+{% block content %}
+{% load static %}
+{% if form != None %}
+
+<h2>{{ title }}.</h2>
+<br />
+<h3>{{ message }}</h3>
+<br />
+<div>
+    <form method="post">
+        {% csrf_token %}
+        <label for="{{form.name.id_for_label}}"> {{form.name.label}} :</label>
+        {{form.name}}<br /><br />
+        <label for="{{form.city.id_for_label}}"> {{form.city.label}} :</label>
+        {{form.city}}<br /><br />
+        <label for="{{form.gender.id_for_label}}"> {{form.gender.label}} :</label>
+        {{form.gender}}<br /><br />
+        <label for="{{form.job.id_for_label}}"> {{form.job.label}} :</label>
+        {{form.job}}<br /><br />
+        <label for="{{form.internet.id_for_label}}"> {{form.internet.label}} :</label>
+        {{form.internet}}<br /><br />
+        <label for="{{form.notice.id_for_label}}"> {{form.notice.label}} :</label>
+        {{form.notice}}<br /><br />
+        <label for="{{form.email.id_for_label}}"> {{form.email.label}} :</label>
+        {{form.email}}<br /><br />
+        <label for="{{form.message.id_for_label}}"> {{form.message.label}} :</label>
+        {{form.message}}<br /><br />
+        <input type="submit" id="submit-btn" value="Отправить" />
+    </form>
+</div>
+{% else %}
+<br />
+<h3>Благодарим за предоставленную информацию</h3>
+<h3>Вы сообщили о себе следующее</h3>
+<ul>
+    <li><span>Имя:</span> {{ data.name}}</li>
+    <li><span>Город:</span> {{ data.city}}</li>
+    <li><span>Пол:</span> {{ data.gender}}</li>
+    <li><span>Работу:</span> {{ data.job}}</li>
+    <li><span>В интернете:</span> {{ data.internet}}</li>
+    <li><span>Получать новости сайта на e-mail:</span> {{ data.notice}}</li>
+    <li><span>Ваш e-mail:</span> {{ data.email}}</li>
+    <li><span>Информация о себе:</span> {{ data.message}}</li>
+</ul>
+
+{% endif %}
+
+<!-- 2. НАШ ПРОСТОЙ СКРИПТ -->
+<!-- 1. ПОДКЛЮЧАЕМ ЛОКАЛЬНЫЙ JQUERY ИЗ ВАШЕГО ПРОЕКТА (если вдруг он не успел загрузиться из layout) -->
+<script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+
+<!-- 2. НАШ jQuery СКРИПТ -->
+<!-- Наш простой jQuery скрипт -->
+<script>
+// @ts-nocheck
+window.$ = window.$ || {};
+
+$(document).ready(function() {
+
+        // 1. Эффект для кнопки отправки формы (меняем цвет текста на красный)
+        $('#submit-btn, form input[type="submit"]').on('mouseenter', function(event) {
+            $(event.target).css('cssText', 'color: red !important;');
+        }).on('mouseleave', function(event) {
+            $(event.target).css('cssText', 'color: ;');
+        });
+
+        // 2. Эффект для полей ввода (меняем фон на светло-голубой)
+        $('form input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]), form textarea, form select').on('focus', function(event) {
+            $(event.target).css('cssText', 'background-color: #e6f7ff !important;');
+        }).on('blur', function(event) {
+            $(event.target).css('cssText', 'background-color: ;');
+        });
+
+});
+</script>
+{% endblock %}
